@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///D:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.40 scan initiated Mon Jan 23 03:03:17 2017 as: nmap -p 1-1000 -T4 -A -v -O -oX www17dz.xml www.17dz.com -->
+<nmaprun scanner="nmap" args="nmap -p 1-1000 -T4 -A -v -O -oX www17dz.xml www.17dz.com" start="1485111797"
+         startstr="Mon Jan 23 03:03:17 2017" version="7.40" xmloutputversion="1.04">
+    <scaninfo type="syn" protocol="tcp" numservices="1000" services="1-1000"/>
+    <verbose level="1"/>
+    <debugging level="0"/>
+    <taskbegin task="NSE" time="1485111798"/>
+    <taskend task="NSE" time="1485111798"/>
+    <taskbegin task="NSE" time="1485111798"/>
+    <taskend task="NSE" time="1485111798"/>
+    <taskbegin task="Ping Scan" time="1485111798"/>
+    <taskend task="Ping Scan" time="1485111799" extrainfo="1 total hosts"/>
+    <taskbegin task="Parallel DNS resolution of 1 host." time="1485111800"/>
+    <taskend task="Parallel DNS resolution of 1 host." time="1485111811"/>
+    <taskbegin task="SYN Stealth Scan" time="1485111811"/>
+    <taskend task="SYN Stealth Scan" time="1485111816" extrainfo="1000 total ports"/>
+    <taskbegin task="Service scan" time="1485111816"/>
+    <taskend task="Service scan" time="1485111841" extrainfo="2 services on 1 host"/>
+    <taskbegin task="Traceroute" time="1485111845"/>
+    <taskend task="Traceroute" time="1485111851"/>
+    <taskbegin task="Parallel DNS resolution of 1 host." time="1485111852"/>
+    <taskend task="Parallel DNS resolution of 1 host." time="1485111863"/>
+    <taskbegin task="NSE" time="1485111863"/>
+    <taskend task="NSE" time="1485111887"/>
+    <taskbegin task="NSE" time="1485111887"/>
+    <taskend task="NSE" time="1485111887"/>
+    <host starttime="1485111798" endtime="1485111887">
+        <status state="up" reason="echo-reply" reason_ttl="30"/>
+        <address addr="120.55.138.43" addrtype="ipv4"/>
+        <hostnames>
+            <hostname name="www.17dz.com" type="user"/>
+        </hostnames>
+        <ports>
+            <extraports state="filtered" count="998">
+                <extrareasons reason="no-responses" count="998"/>
+            </extraports>
+            <port protocol="tcp" portid="80">
+                <state state="open" reason="syn-ack" reason_ttl="56"/>
+                <service name="http" product="nginx" method="probed" conf="10">
+                    <cpe>cpe:/a:igor_sysoev:nginx</cpe>
+                </service>
+                <script id="http-server-header" output="nginx">
+                    <elem>nginx</elem>
+                </script>
+                <script id="http-title" output="Did not follow redirect to https://www.17dz.com/">
+                    <elem key="redirect_url">https://www.17dz.com/</elem>
+                </script>
+            </port>
+            <port protocol="tcp" portid="443">
+                <state state="open" reason="syn-ack" reason_ttl="53"/>
+                <service name="https"
+                         servicefp="SF-Port443-TCP:V=7.40%T=SSL%I=7%D=1/23%Time=58850214%P=i686-pc-windows-windows%r(GetRequest,F9,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Sun,\x2022\x20Jan\x202017\x2019:03:47\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Length:\x2040\r\nConnection:\x20close\r\nLast-Modified:\x20Tue,\x2013\x20Dec\x202016\x2008:22:51\x20GMT\r\nETag:\x20\&quot;584fafdb-28\&quot;\r\nAccept-Ranges:\x20bytes\r\n\r\nservyou\x20KeepAlive\.\nPlease\x20do\x20not\x20delete!&quot;)%r(HTTPOptions,128,&quot;HTTP/1\.1\x20405\x20Not\x20Allowed\r\nDate:\x20Sun,\x2022\x20Jan\x202017\x2019:03:47\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Length:\x20166\r\nConnection:\x20close\r\n\r\n&lt;html&gt;\r\n&lt;head&gt;&lt;title&gt;405\x20Not\x20Allowed&lt;/title&gt;&lt;/head&gt;\r\n&lt;body\x20bgcolor=\&quot;white\&quot;&gt;\r\n&lt;center&gt;&lt;h1&gt;405\x20Not\x20Allowed&lt;/h1&gt;&lt;/center&gt;\r\n&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;\r\n&lt;/body&gt;\r\n&lt;/html&gt;\r\n&quot;)%r(FourOhFourRequest,151,&quot;HTTP/1\.1\x20302\x20Moved\x20Temporarily\r\nDate:\x20Sun,\x2022\x20Jan\x202017\x2019:03:47\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Length:\x20154\r\nConnection:\x20close\r\nLocation:\x20https://17dz\.com/error/404/404\.html\r\n\r\n&lt;html&gt;\r\n&lt;head&gt;&lt;title&gt;302\x20Found&lt;/title&gt;&lt;/head&gt;\r\n&lt;body\x20bgcolor=\&quot;white\&quot;&gt;\r\n&lt;center&gt;&lt;h1&gt;302\x20Found&lt;/h1&gt;&lt;/center&gt;\r\n&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;\r\n&lt;/body&gt;\r\n&lt;/html&gt;\r\n&quot;)%r(vmware-esx,174,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Sun,\x2022\x20Jan\x202017\x2019:03:47\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Length:\x20242\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//IETF//DTD\x20HTML\x202\.0//EN\&quot;&gt;\r\n&lt;html&gt;\r\n&lt;head&gt;&lt;title&gt;400\x20Bad\x20Request&lt;/title&gt;&lt;/head&gt;\r\n&lt;body\x20bgcolor=\&quot;white\&quot;&gt;\r\n&lt;h1&gt;400\x20Bad\x20Request&lt;/h1&gt;\r\n&lt;p&gt;Your\x20browser\x20sent\x20a\x20request\x20that\x20this\x20server\x20could\x20not\x20understand\.&lt;/body&gt;\r\n&lt;/html&gt;\r\n&quot;)%r(tor-versions,174,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Sun,\x2022\x20Jan\x202017\x2019:03:47\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Length:\x20242\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//IETF//DTD\x20HTML\x202\.0//EN\&quot;&gt;\r\n&lt;html&gt;\r\n&lt;head&gt;&lt;title&gt;400\x20Bad\x20Request&lt;/title&gt;&lt;/head&gt;\r\n&lt;body\x20bgcolor=\&quot;white\&quot;&gt;\r\n&lt;h1&gt;400\x20Bad\x20Request&lt;/h1&gt;\r\n&lt;p&gt;Your\x20browser\x20sent\x20a\x20request\x20that\x20this\x20server\x20could\x20not\x20understand\.&lt;/body&gt;\r\n&lt;/html&gt;\r\n&quot;);"
+                         tunnel="ssl" method="probed" conf="10"/>
+                <script id="fingerprint-strings"
+                        output="&#xa;  FourOhFourRequest: &#xa;    HTTP/1.1 302 Moved Temporarily&#xa;    Date: Sun, 22 Jan 2017 19:03:47 GMT&#xa;    Content-Type: text/html&#xa;    Content-Length: 154&#xa;    Connection: close&#xa;    Location: https://17dz.com/error/404/404.html&#xa;    &lt;html&gt;&#xa;    &lt;head&gt;&lt;title&gt;302 Found&lt;/title&gt;&lt;/head&gt;&#xa;    &lt;body bgcolor=&quot;white&quot;&gt;&#xa;    &lt;center&gt;&lt;h1&gt;302 Found&lt;/h1&gt;&lt;/center&gt;&#xa;    &lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;&#xa;  GetRequest: &#xa;    HTTP/1.1 200 OK&#xa;    Date: Sun, 22 Jan 2017 19:03:47 GMT&#xa;    Content-Type: text/html&#xa;    Content-Length: 40&#xa;    Connection: close&#xa;    Last-Modified: Tue, 13 Dec 2016 08:22:51 GMT&#xa;    ETag: &quot;584fafdb-28&quot;&#xa;    Accept-Ranges: bytes&#xa;    servyou KeepAlive.&#xa;    Please do not delete!&#xa;  HTTPOptions: &#xa;    HTTP/1.1 405 Not Allowed&#xa;    Date: Sun, 22 Jan 2017 19:03:47 GMT&#xa;    Content-Type: text/html&#xa;    Content-Length: 166&#xa;    Connection: close&#xa;    &lt;html&gt;&#xa;    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;&#xa;    &lt;body bgcolor=&quot;white&quot;&gt;&#xa;    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;&#xa;    &lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;&#xa;  tor-versions, vmware-esx: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Date: Sun, 22 Jan 2017 19:03:47 GMT&#xa;    Content-Type: text/html&#xa;    Content-Length: 242&#xa;    Connection: close&#xa;    &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;&#xa;    &lt;html&gt;&#xa;    &lt;head&gt;&lt;title&gt;400 Bad Request&lt;/title&gt;&lt;/head&gt;&#xa;    &lt;body bgcolor=&quot;white&quot;&gt;&#xa;    &lt;h1&gt;400 Bad Request&lt;/h1&gt;&#xa;    &lt;p&gt;Your browser sent a request that this server could not understand.&lt;/body&gt;&#xa;    &lt;/html&gt;">
+                    <elem key="FourOhFourRequest">&#xa; HTTP/1.1 302 Moved Temporarily&#xa; Date: Sun, 22 Jan 2017
+                        19:03:47 GMT&#xa; Content-Type: text/html&#xa; Content-Length: 154&#xa; Connection: close&#xa;
+                        Location: https://17dz.com/error/404/404.html&#xa; &lt;html&gt;&#xa; &lt;head&gt;&lt;title&gt;302
+                        Found&lt;/title&gt;&lt;/head&gt;&#xa; &lt;body bgcolor=&quot;white&quot;&gt;&#xa; &lt;center&gt;&lt;h1&gt;302
+                        Found&lt;/h1&gt;&lt;/center&gt;&#xa; &lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;&#xa; &lt;/body&gt;&#xa;
+                        &lt;/html&gt;</elem>
+                    <elem key="GetRequest">&#xa; HTTP/1.1 200 OK&#xa; Date: Sun, 22 Jan 2017 19:03:47 GMT&#xa;
+                        Content-Type: text/html&#xa; Content-Length: 40&#xa; Connection: close&#xa; Last-Modified: Tue,
+                        13 Dec 2016 08:22:51 GMT&#xa; ETag: &quot;584fafdb-28&quot;&#xa; Accept-Ranges: bytes&#xa;
+                        servyou KeepAlive.&#xa; Please do not delete!
+                    </elem>
+                    <elem key="HTTPOptions">&#xa; HTTP/1.1 405 Not Allowed&#xa; Date: Sun, 22 Jan 2017 19:03:47 GMT&#xa;
+                        Content-Type: text/html&#xa; Content-Length: 166&#xa; Connection: close&#xa; &lt;html&gt;&#xa;
+                        &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;&#xa; &lt;body bgcolor=&quot;white&quot;&gt;&#xa;
+                        &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;&#xa; &lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;&#xa;
+                        &lt;/body&gt;&#xa; &lt;/html&gt;</elem>
+                    <elem key="tor-versions, vmware-esx">&#xa; HTTP/1.1 400 Bad Request&#xa; Date: Sun, 22 Jan 2017
+                        19:03:47 GMT&#xa; Content-Type: text/html&#xa; Content-Length: 242&#xa; Connection: close&#xa;
+                        &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;&#xa; &lt;html&gt;&#xa; &lt;head&gt;&lt;title&gt;400
+                        Bad Request&lt;/title&gt;&lt;/head&gt;&#xa; &lt;body bgcolor=&quot;white&quot;&gt;&#xa; &lt;h1&gt;400
+                        Bad Request&lt;/h1&gt;&#xa; &lt;p&gt;Your browser sent a request that this server could not
+                        understand.&lt;/body&gt;&#xa; &lt;/html&gt;</elem>
+                </script>
+                <script id="http-favicon" output="Unknown favicon MD5: 91672D4AA2897133D961EFFE13054B3E"/>
+                <script id="http-methods" output="&#xa;  Supported Methods: OPTIONS">
+                    <table key="Supported Methods">
+                        <elem>OPTIONS</elem>
+                    </table>
+                </script>
+                <script id="http-title"
+                        output="400 The plain HTTP request was sent to HTTPS port&#xa;Requested resource was https://www.17dz.com/home/index.html">
+                    <elem key="title">400 The plain HTTP request was sent to HTTPS port</elem>
+                    <elem key="redirect_url">https://www.17dz.com/home/index.html</elem>
+                </script>
+                <script id="ssl-cert"
+                        output="Subject: commonName=*.17dz.com&#xa;Subject Alternative Name: DNS:*.17dz.com, DNS:17dz.com&#xa;Issuer: commonName=RapidSSL SHA256 CA/organizationName=GeoTrust Inc./countryName=US&#xa;Public Key type: rsa&#xa;Public Key bits: 2048&#xa;Signature Algorithm: sha256WithRSAEncryption&#xa;Not valid before: 2016-04-16T00:00:00&#xa;Not valid after:  2017-04-16T23:59:59&#xa;MD5:   5e0c 2762 e144 be68 d5a2 78f3 37d7 d921&#xa;SHA-1: 175c 8d67 8a26 cd1e 2196 be66 954a d088 535c c020">
+                    <table key="subject">
+                        <elem key="commonName">*.17dz.com</elem>
+                    </table>
+                    <table key="issuer">
+                        <elem key="organizationName">GeoTrust Inc.</elem>
+                        <elem key="countryName">US</elem>
+                        <elem key="commonName">RapidSSL SHA256 CA</elem>
+                    </table>
+                    <table key="pubkey">
+                        <elem key="type">rsa</elem>
+                        <elem key="bits">2048</elem>
+                        <elem key="exponent">userdata: 052538B8</elem>
+                    </table>
+                    <table key="extensions">
+                        <table>
+                            <elem key="name">X509v3 Subject Alternative Name</elem>
+                            <elem key="value">DNS:*.17dz.com, DNS:17dz.com</elem>
+                        </table>
+                        <table>
+                            <elem key="name">X509v3 Basic Constraints</elem>
+                            <elem key="value">CA:FALSE</elem>
+                        </table>
+                        <table>
+                            <elem key="name">X509v3 CRL Distribution Points</elem>
+                            <elem key="value">&#xa;Full Name:&#xa; URI:http://gp.symcb.com/gp.crl&#xa;</elem>
+                        </table>
+                        <table>
+                            <elem key="name">X509v3 Certificate Policies</elem>
+                            <elem key="value">Policy: 2.23.140.1.2.1&#xa; CPS: https://www.rapidssl.com/legal&#xa; User
+                                Notice:&#xa; Explicit Text: https://www.rapidssl.com/legal&#xa;</elem>
+                        </table>
+                        <table>
+                            <elem key="name">X509v3 Authority Key Identifier</elem>
+                            <elem key="value">
+                                keyid:97:C2:27:50:9E:C2:C9:EC:0C:88:32:C8:7C:AD:E2:A6:01:4F:DA:6F&#xa;</elem>
+                        </table>
+                        <table>
+                            <elem key="critical">true</elem>
+                            <elem key="name">X509v3 Key Usage</elem>
+                            <elem key="value">Digital Signature, Key Encipherment</elem>
+                        </table>
+                        <table>
+                            <elem key="name">X509v3 Extended Key Usage</elem>
+                            <elem key="value">TLS Web Server Authentication, TLS Web Client Authentication</elem>
+                        </table>
+                        <table>
+                            <elem key="name">Authority Information Access</elem>
+                            <elem key="value">OCSP - URI:http://gp.symcd.com&#xa;CA Issuers -
+                                URI:http://gp.symcb.com/gp.crt&#xa;</elem>
+                        </table>
+                        <table>
+                            <elem key="name">CT Precertificate SCTs</elem>
+                            <elem key="value">Signed Certificate Timestamp:&#xa; Version : v1(0)&#xa; Log ID :
+                                DD:EB:1D:2B:7A:0D:4F:A6:20:8B:81:AD:81:68:70:7E:&#xa;
+                                2E:8E:9D:01:D5:5C:88:8D:3D:11:C4:CD:B6:EC:BE:CC&#xa; Timestamp : Apr 16 05:52:05.583
+                                2016 GMT&#xa; Extensions: none&#xa; Signature : ecdsa-with-SHA256&#xa;
+                                30:46:02:21:00:EF:60:26:71:AB:73:4E:A3:53:B8:29:&#xa;
+                                82:12:F0:2D:3E:EE:F1:99:00:BC:61:48:39:B9:6B:CD:&#xa;
+                                DD:76:98:68:AF:02:21:00:D5:86:45:46:E4:4B:F3:A8:&#xa;
+                                C3:E9:81:05:17:3A:B8:24:C7:A6:E1:E3:1D:C0:4B:C8:&#xa; 69:2E:C8:53:D3:F9:6A:25&#xa;Signed
+                                Certificate Timestamp:&#xa; Version : v1(0)&#xa; Log ID :
+                                A4:B9:09:90:B4:18:58:14:87:BB:13:A2:CC:67:70:0A:&#xa;
+                                3C:35:98:04:F9:1B:DF:B8:E3:77:CD:0E:C8:0D:DC:10&#xa; Timestamp : Apr 16 05:52:05.637
+                                2016 GMT&#xa; Extensions: none&#xa; Signature : ecdsa-with-SHA256&#xa;
+                                30:45:02:21:00:B8:D8:9D:20:B8:BA:8D:D8:DE:54:3C:&#xa;
+                                73:23:9C:4B:59:37:04:4E:3D:34:30:D3:20:AA:3D:88:&#xa;
+                                61:D5:0B:F8:67:02:20:24:68:91:19:A4:3E:4D:79:98:&#xa;
+                                F2:F2:BD:A0:6B:33:E4:6E:B9:C6:D5:A4:1F:48:DD:DB:&#xa; 53:F6:F4:81:AC:32:34
+                            </elem>
+                        </table>
+                    </table>
+                    <elem key="sig_algo">sha256WithRSAEncryption</elem>
+                    <table key="validity">
+                        <elem key="notBefore">2016-04-16T00:00:00</elem>
+                        <elem key="notAfter">2017-04-16T23:59:59</elem>
+                    </table>
+                    <elem key="md5">5e0c2762e144be68d5a278f337d7d921</elem>
+                    <elem key="sha1">175c8d678a26cd1e2196be66954ad088535cc020</elem>
+                    <elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIFYzCCBEugAwIBAgIQMyNm8iS6xvSHezXZbk/VADANBgkqhkiG9w0BAQsFADBC&#xa;MQswCQYDVQQGEwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEbMBkGA1UEAxMS&#xa;UmFwaWRTU0wgU0hBMjU2IENBMB4XDTE2MDQxNjAwMDAwMFoXDTE3MDQxNjIzNTk1&#xa;OVowFTETMBEGA1UEAwwKKi4xN2R6LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP&#xa;ADCCAQoCggEBAKt71A4slcP+P6iWoPlCivANr22BqajDlnR+GVKJLNzbVlM24kCm&#xa;jtzOfvT4BOawAEpLY83rdm30N5M0u90WqZuaSljM6mMHZTX/90uJJIg7NzBeYw+K&#xa;4xq6VFhO37fOKiNCdXtJpMFPmvJBvSGx16x2IjCj1smcfANGJpInMOFie4XsJXQo&#xa;Cgyksuuhk8diS2alA595I4sL+eNc+5r0Ys1gyf5v3gqNke+jIkPNJ0HN3S50zFwn&#xa;pDiciZrJNqk+7M1vOGVjPyq/d4PNLC8aJ7rWRE0bpEWQBEZ60vvVUkvOj/b2Ji8j&#xa;0dBcZtpqWszWUCuvsqQikBR/oz3DWq/hkiECAwEAAaOCAoAwggJ8MB8GA1UdEQQY&#xa;MBaCCiouMTdkei5jb22CCDE3ZHouY29tMAkGA1UdEwQCMAAwKwYDVR0fBCQwIjAg&#xa;oB6gHIYaaHR0cDovL2dwLnN5bWNiLmNvbS9ncC5jcmwwbwYDVR0gBGgwZjBkBgZn&#xa;gQwBAgEwWjAqBggrBgEFBQcCARYeaHR0cHM6Ly93d3cucmFwaWRzc2wuY29tL2xl&#xa;Z2FsMCwGCCsGAQUFBwICMCAMHmh0dHBzOi8vd3d3LnJhcGlkc3NsLmNvbS9sZWdh&#xa;bDAfBgNVHSMEGDAWgBSXwidQnsLJ7AyIMsh8reKmAU/abzAOBgNVHQ8BAf8EBAMC&#xa;BaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMFcGCCsGAQUFBwEBBEsw&#xa;STAfBggrBgEFBQcwAYYTaHR0cDovL2dwLnN5bWNkLmNvbTAmBggrBgEFBQcwAoYa&#xa;aHR0cDovL2dwLnN5bWNiLmNvbS9ncC5jcnQwggEFBgorBgEEAdZ5AgQCBIH2BIHz&#xa;APEAdwDd6x0reg1PpiCLga2BaHB+Lo6dAdVciI09EcTNtuy+zAAAAVQdoE3PAAAE&#xa;AwBIMEYCIQDvYCZxq3NOo1O4KYIS8C0+7vGZALxhSDm5a83ddphorwIhANWGRUbk&#xa;S/Oow+mBBRc6uCTHpuHjHcBLyGkuyFPT+WolAHYApLkJkLQYWBSHuxOizGdwCjw1&#xa;mAT5G9+443fNDsgN3BAAAAFUHaBOBQAABAMARzBFAiEAuNidILi6jdjeVDxzI5xL&#xa;WTcETj00MNMgqj2IYdUL+GcCICRokRmkPk15mPLyvaBrM+RuucbVpB9I3dtT9vSB&#xa;rDI0MA0GCSqGSIb3DQEBCwUAA4IBAQCc3ZrN/deM/Cy3BTs2l5whVADtooAXxO0D&#xa;KPI91BQGAYs0f6vI8bWqd46g8gzO1/fRCEF5kIiRDA+dfPWwYx9rpUI9I+3BGpuj&#xa;BeQxO2k8kXA7BL1bABEAOdPuNbeqL348vZ/U5SoCWUmt8l5Qe5qKxYKav/CCZ7wk&#xa;n0jLN/ttxA3gHOILDsmriYTLbplvcD+9rhRrKDE2ZP8DlIN2z6yDOljm8IH6cg/1&#xa;T+TWC9cZZZvAN3SAlXHSTpDwHW/1fc78TbvtlLX+sC42DTbZtW7uNoYOc0x18kca&#xa;Tq1C0IqkujpXXerjER5QYHwPDOON0CWdZvcQ7p9y9xUDRAb0gFmB&#xa;-&#45;&#45;&#45;&#45;END
+                        CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+                </script>
+            </port>
+        </ports>
+        <os>
+            <portused state="open" proto="tcp" portid="80"/>
+        </os>
+        <uptime seconds="44" lastboot="Mon Jan 23 03:04:03 2017"/>
+        <distance value="13"/>
+        <tcpsequence index="263" difficulty="Good luck!" values="985A73A1,9D2C8146,D61E2156,8731AB1D,18667727"/>
+        <ipidsequence class="All zeros" values="0,0,0,0,0"/>
+        <tcptssequence class="other" values="2A285A36,82C15D94,2A28532E,82C15E5C,82C15E5C"/>
+        <trace port="443" proto="tcp">
+            <hop ttl="13" ipaddr="120.55.138.43" rtt="13.00"/>
+        </trace>
+        <times srtt="10576" rttvar="4627" to="100000"/>
+    </host>
+    <taskbegin task="NSE" time="1485111887"/>
+    <taskend task="NSE" time="1485111887"/>
+    <taskbegin task="NSE" time="1485111887"/>
+    <taskend task="NSE" time="1485111887"/>
+    <runstats>
+        <finished time="1485111887" timestr="Mon Jan 23 03:04:47 2017" elapsed="90.97"
+                  summary="Nmap done at Mon Jan 23 03:04:47 2017; 1 IP address (1 host up) scanned in 90.97 seconds"
+                  exit="success"/>
+        <hosts up="1" down="0" total="1"/>
+    </runstats>
+</nmaprun>

@@ -1,0 +1,4264 @@
+//
+// ���ļ����� JavaTM Architecture for XML Binding (JAXB) ����ʵ�� v2.2.11 ��ɵ�
+// ����� <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// �����±���Դģʽʱ, �Դ��ļ��������޸Ķ�����ʧ��
+// ���ʱ��: 2017.01.23 ʱ�� 01:48:19 AM CST 
+//
+
+
+package core.examples;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>anonymous complex type�� Java �ࡣ
+ * 
+ * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+ * 
+ * <pre>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="scaninfo"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="protocol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="numservices" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                 &lt;attribute name="services" type="{http://www.w3.org/2001/XMLSchema}dateTime" /&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="verbose"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;attribute name="level" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="debugging"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;attribute name="level" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="taskbegin" maxOccurs="unbounded"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;attribute name="task" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="time" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="taskend" maxOccurs="unbounded"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;attribute name="task" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="time" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="host"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;sequence&gt;
+ *                   &lt;element name="status"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                           &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                           &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="address"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="addr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                           &lt;attribute name="addrtype" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="hostnames"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;sequence&gt;
+ *                             &lt;element name="hostname"&gt;
+ *                               &lt;complexType&gt;
+ *                                 &lt;complexContent&gt;
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                     &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                     &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                   &lt;/restriction&gt;
+ *                                 &lt;/complexContent&gt;
+ *                               &lt;/complexType&gt;
+ *                             &lt;/element&gt;
+ *                           &lt;/sequence&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="ports"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;sequence&gt;
+ *                             &lt;element name="extraports"&gt;
+ *                               &lt;complexType&gt;
+ *                                 &lt;complexContent&gt;
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                     &lt;sequence&gt;
+ *                                       &lt;element name="extrareasons"&gt;
+ *                                         &lt;complexType&gt;
+ *                                           &lt;complexContent&gt;
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                               &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                               &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                                             &lt;/restriction&gt;
+ *                                           &lt;/complexContent&gt;
+ *                                         &lt;/complexType&gt;
+ *                                       &lt;/element&gt;
+ *                                     &lt;/sequence&gt;
+ *                                     &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                     &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                                   &lt;/restriction&gt;
+ *                                 &lt;/complexContent&gt;
+ *                               &lt;/complexType&gt;
+ *                             &lt;/element&gt;
+ *                             &lt;element name="port" maxOccurs="unbounded"&gt;
+ *                               &lt;complexType&gt;
+ *                                 &lt;complexContent&gt;
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                     &lt;sequence&gt;
+ *                                       &lt;element name="state"&gt;
+ *                                         &lt;complexType&gt;
+ *                                           &lt;complexContent&gt;
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                               &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                               &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                               &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                                             &lt;/restriction&gt;
+ *                                           &lt;/complexContent&gt;
+ *                                         &lt;/complexType&gt;
+ *                                       &lt;/element&gt;
+ *                                       &lt;element name="service"&gt;
+ *                                         &lt;complexType&gt;
+ *                                           &lt;complexContent&gt;
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                               &lt;sequence&gt;
+ *                                                 &lt;element name="cpe" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *                                               &lt;/sequence&gt;
+ *                                               &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                               &lt;attribute name="product" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                               &lt;attribute name="method" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                               &lt;attribute name="conf" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                                             &lt;/restriction&gt;
+ *                                           &lt;/complexContent&gt;
+ *                                         &lt;/complexType&gt;
+ *                                       &lt;/element&gt;
+ *                                       &lt;element name="script" maxOccurs="unbounded"&gt;
+ *                                         &lt;complexType&gt;
+ *                                           &lt;complexContent&gt;
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                               &lt;sequence&gt;
+ *                                                 &lt;element name="table"&gt;
+ *                                                   &lt;complexType&gt;
+ *                                                     &lt;complexContent&gt;
+ *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                                         &lt;sequence&gt;
+ *                                                           &lt;element name="elem" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/&gt;
+ *                                                         &lt;/sequence&gt;
+ *                                                         &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                                       &lt;/restriction&gt;
+ *                                                     &lt;/complexContent&gt;
+ *                                                   &lt;/complexType&gt;
+ *                                                 &lt;/element&gt;
+ *                                               &lt;/sequence&gt;
+ *                                               &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                               &lt;attribute name="output" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                             &lt;/restriction&gt;
+ *                                           &lt;/complexContent&gt;
+ *                                         &lt;/complexType&gt;
+ *                                       &lt;/element&gt;
+ *                                     &lt;/sequence&gt;
+ *                                     &lt;attribute name="protocol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                     &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                                   &lt;/restriction&gt;
+ *                                 &lt;/complexContent&gt;
+ *                               &lt;/complexType&gt;
+ *                             &lt;/element&gt;
+ *                           &lt;/sequence&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="os"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;sequence&gt;
+ *                             &lt;element name="portused"&gt;
+ *                               &lt;complexType&gt;
+ *                                 &lt;complexContent&gt;
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                     &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                     &lt;attribute name="proto" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                     &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                                   &lt;/restriction&gt;
+ *                                 &lt;/complexContent&gt;
+ *                               &lt;/complexType&gt;
+ *                             &lt;/element&gt;
+ *                           &lt;/sequence&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="distance"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="tcpsequence"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="index" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                           &lt;attribute name="difficulty" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                           &lt;attribute name="values" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="ipidsequence"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="class" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                           &lt;attribute name="values" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="tcptssequence"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="class" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="trace"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;sequence&gt;
+ *                             &lt;element name="hop"&gt;
+ *                               &lt;complexType&gt;
+ *                                 &lt;complexContent&gt;
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                                     &lt;attribute name="ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                                     &lt;attribute name="ipaddr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                                     &lt;attribute name="rtt" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *                                   &lt;/restriction&gt;
+ *                                 &lt;/complexContent&gt;
+ *                               &lt;/complexType&gt;
+ *                             &lt;/element&gt;
+ *                           &lt;/sequence&gt;
+ *                           &lt;attribute name="port" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                           &lt;attribute name="proto" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="times"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="srtt" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                           &lt;attribute name="rttvar" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                           &lt;attribute name="to" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                 &lt;/sequence&gt;
+ *                 &lt;attribute name="starttime" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                 &lt;attribute name="endtime" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="runstats"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;sequence&gt;
+ *                   &lt;element name="finished"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="time" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                           &lt;attribute name="timestr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                           &lt;attribute name="elapsed" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *                           &lt;attribute name="summary" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                           &lt;attribute name="exit" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                   &lt;element name="hosts"&gt;
+ *                     &lt;complexType&gt;
+ *                       &lt;complexContent&gt;
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                           &lt;attribute name="up" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                           &lt;attribute name="down" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                           &lt;attribute name="total" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *                         &lt;/restriction&gt;
+ *                       &lt;/complexContent&gt;
+ *                     &lt;/complexType&gt;
+ *                   &lt;/element&gt;
+ *                 &lt;/sequence&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="scanner" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="args" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="start" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="startstr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="version" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *       &lt;attribute name="xmloutputversion" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "scaninfo",
+    "verbose",
+    "debugging",
+    "taskbegin",
+    "taskend",
+    "host",
+    "runstats"
+})
+@XmlRootElement(name = "nmaprun")
+public class Nmaprun {
+
+    @XmlElement(required = true)
+    protected Scaninfo scaninfo;
+    @XmlElement(required = true)
+    protected Verbose verbose;
+    @XmlElement(required = true)
+    protected Debugging debugging;
+    @XmlElement(required = true)
+    protected List<Taskbegin> taskbegin;
+    @XmlElement(required = true)
+    protected List<Taskend> taskend;
+    @XmlElement(required = true)
+    protected Host host;
+    @XmlElement(required = true)
+    protected Runstats runstats;
+    @XmlAttribute(name = "scanner")
+    protected String scanner;
+    @XmlAttribute(name = "args")
+    protected String args;
+    @XmlAttribute(name = "start")
+    protected Integer start;
+    @XmlAttribute(name = "startstr")
+    protected String startstr;
+    @XmlAttribute(name = "version")
+    protected BigDecimal version;
+    @XmlAttribute(name = "xmloutputversion")
+    protected BigDecimal xmloutputversion;
+
+    /**
+     * ��ȡscaninfo���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Scaninfo }
+     *     
+     */
+    public Scaninfo getScaninfo() {
+        return scaninfo;
+    }
+
+    /**
+     * ����scaninfo���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Scaninfo }
+     *     
+     */
+    public void setScaninfo(Scaninfo value) {
+        this.scaninfo = value;
+    }
+
+    /**
+     * ��ȡverbose���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Verbose }
+     *     
+     */
+    public Verbose getVerbose() {
+        return verbose;
+    }
+
+    /**
+     * ����verbose���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Verbose }
+     *     
+     */
+    public void setVerbose(Verbose value) {
+        this.verbose = value;
+    }
+
+    /**
+     * ��ȡdebugging���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Debugging }
+     *     
+     */
+    public Debugging getDebugging() {
+        return debugging;
+    }
+
+    /**
+     * ����debugging���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Debugging }
+     *     
+     */
+    public void setDebugging(Debugging value) {
+        this.debugging = value;
+    }
+
+    /**
+     * Gets the value of the taskbegin property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the taskbegin property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTaskbegin().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Taskbegin }
+     * 
+     * 
+     */
+    public List<Taskbegin> getTaskbegin() {
+        if (taskbegin == null) {
+            taskbegin = new ArrayList<Taskbegin>();
+        }
+        return this.taskbegin;
+    }
+
+    /**
+     * Gets the value of the taskend property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the taskend property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTaskend().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Taskend }
+     * 
+     * 
+     */
+    public List<Taskend> getTaskend() {
+        if (taskend == null) {
+            taskend = new ArrayList<Taskend>();
+        }
+        return this.taskend;
+    }
+
+    /**
+     * ��ȡhost���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Host }
+     *     
+     */
+    public Host getHost() {
+        return host;
+    }
+
+    /**
+     * ����host���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Host }
+     *     
+     */
+    public void setHost(Host value) {
+        this.host = value;
+    }
+
+    /**
+     * ��ȡrunstats���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Runstats }
+     *     
+     */
+    public Runstats getRunstats() {
+        return runstats;
+    }
+
+    /**
+     * ����runstats���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Runstats }
+     *     
+     */
+    public void setRunstats(Runstats value) {
+        this.runstats = value;
+    }
+
+    /**
+     * ��ȡscanner���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getScanner() {
+        return scanner;
+    }
+
+    /**
+     * ����scanner���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setScanner(String value) {
+        this.scanner = value;
+    }
+
+    /**
+     * ��ȡargs���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getArgs() {
+        return args;
+    }
+
+    /**
+     * ����args���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setArgs(String value) {
+        this.args = value;
+    }
+
+    /**
+     * ��ȡstart���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getStart() {
+        return start;
+    }
+
+    /**
+     * ����start���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setStart(Integer value) {
+        this.start = value;
+    }
+
+    /**
+     * ��ȡstartstr���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStartstr() {
+        return startstr;
+    }
+
+    /**
+     * ����startstr���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStartstr(String value) {
+        this.startstr = value;
+    }
+
+    /**
+     * ��ȡversion���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getVersion() {
+        return version;
+    }
+
+    /**
+     * ����version���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setVersion(BigDecimal value) {
+        this.version = value;
+    }
+
+    /**
+     * ��ȡxmloutputversion���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getXmloutputversion() {
+        return xmloutputversion;
+    }
+
+    /**
+     * ����xmloutputversion���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setXmloutputversion(BigDecimal value) {
+        this.xmloutputversion = value;
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;attribute name="level" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Debugging {
+
+        @XmlAttribute(name = "level")
+        protected Integer level;
+
+        /**
+         * ��ȡlevel���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getLevel() {
+            return level;
+        }
+
+        /**
+         * ����level���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setLevel(Integer value) {
+            this.level = value;
+        }
+
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element name="status"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                 &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                 &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="address"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="addr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                 &lt;attribute name="addrtype" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="hostnames"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;sequence&gt;
+     *                   &lt;element name="hostname"&gt;
+     *                     &lt;complexType&gt;
+     *                       &lt;complexContent&gt;
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                           &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                           &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                         &lt;/restriction&gt;
+     *                       &lt;/complexContent&gt;
+     *                     &lt;/complexType&gt;
+     *                   &lt;/element&gt;
+     *                 &lt;/sequence&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="ports"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;sequence&gt;
+     *                   &lt;element name="extraports"&gt;
+     *                     &lt;complexType&gt;
+     *                       &lt;complexContent&gt;
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                           &lt;sequence&gt;
+     *                             &lt;element name="extrareasons"&gt;
+     *                               &lt;complexType&gt;
+     *                                 &lt;complexContent&gt;
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                                     &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                     &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                                   &lt;/restriction&gt;
+     *                                 &lt;/complexContent&gt;
+     *                               &lt;/complexType&gt;
+     *                             &lt;/element&gt;
+     *                           &lt;/sequence&gt;
+     *                           &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                           &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                         &lt;/restriction&gt;
+     *                       &lt;/complexContent&gt;
+     *                     &lt;/complexType&gt;
+     *                   &lt;/element&gt;
+     *                   &lt;element name="port" maxOccurs="unbounded"&gt;
+     *                     &lt;complexType&gt;
+     *                       &lt;complexContent&gt;
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                           &lt;sequence&gt;
+     *                             &lt;element name="state"&gt;
+     *                               &lt;complexType&gt;
+     *                                 &lt;complexContent&gt;
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                                     &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                     &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                     &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                                   &lt;/restriction&gt;
+     *                                 &lt;/complexContent&gt;
+     *                               &lt;/complexType&gt;
+     *                             &lt;/element&gt;
+     *                             &lt;element name="service"&gt;
+     *                               &lt;complexType&gt;
+     *                                 &lt;complexContent&gt;
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                                     &lt;sequence&gt;
+     *                                       &lt;element name="cpe" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+     *                                     &lt;/sequence&gt;
+     *                                     &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                     &lt;attribute name="product" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                     &lt;attribute name="method" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                     &lt;attribute name="conf" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                                   &lt;/restriction&gt;
+     *                                 &lt;/complexContent&gt;
+     *                               &lt;/complexType&gt;
+     *                             &lt;/element&gt;
+     *                             &lt;element name="script" maxOccurs="unbounded"&gt;
+     *                               &lt;complexType&gt;
+     *                                 &lt;complexContent&gt;
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                                     &lt;sequence&gt;
+     *                                       &lt;element name="table"&gt;
+     *                                         &lt;complexType&gt;
+     *                                           &lt;complexContent&gt;
+     *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                                               &lt;sequence&gt;
+     *                                                 &lt;element name="elem" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/&gt;
+     *                                               &lt;/sequence&gt;
+     *                                               &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                             &lt;/restriction&gt;
+     *                                           &lt;/complexContent&gt;
+     *                                         &lt;/complexType&gt;
+     *                                       &lt;/element&gt;
+     *                                     &lt;/sequence&gt;
+     *                                     &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                     &lt;attribute name="output" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                                   &lt;/restriction&gt;
+     *                                 &lt;/complexContent&gt;
+     *                               &lt;/complexType&gt;
+     *                             &lt;/element&gt;
+     *                           &lt;/sequence&gt;
+     *                           &lt;attribute name="protocol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                           &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                         &lt;/restriction&gt;
+     *                       &lt;/complexContent&gt;
+     *                     &lt;/complexType&gt;
+     *                   &lt;/element&gt;
+     *                 &lt;/sequence&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="os"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;sequence&gt;
+     *                   &lt;element name="portused"&gt;
+     *                     &lt;complexType&gt;
+     *                       &lt;complexContent&gt;
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                           &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                           &lt;attribute name="proto" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                           &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                         &lt;/restriction&gt;
+     *                       &lt;/complexContent&gt;
+     *                     &lt;/complexType&gt;
+     *                   &lt;/element&gt;
+     *                 &lt;/sequence&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="distance"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="tcpsequence"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="index" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                 &lt;attribute name="difficulty" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                 &lt;attribute name="values" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="ipidsequence"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="class" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                 &lt;attribute name="values" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="tcptssequence"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="class" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="trace"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;sequence&gt;
+     *                   &lt;element name="hop"&gt;
+     *                     &lt;complexType&gt;
+     *                       &lt;complexContent&gt;
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                           &lt;attribute name="ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                           &lt;attribute name="ipaddr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                           &lt;attribute name="rtt" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+     *                         &lt;/restriction&gt;
+     *                       &lt;/complexContent&gt;
+     *                     &lt;/complexType&gt;
+     *                   &lt;/element&gt;
+     *                 &lt;/sequence&gt;
+     *                 &lt;attribute name="port" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                 &lt;attribute name="proto" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="times"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="srtt" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                 &lt;attribute name="rttvar" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                 &lt;attribute name="to" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *       &lt;/sequence&gt;
+     *       &lt;attribute name="starttime" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *       &lt;attribute name="endtime" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "status",
+        "address",
+        "hostnames",
+        "ports",
+        "os",
+        "distance",
+        "tcpsequence",
+        "ipidsequence",
+        "tcptssequence",
+        "trace",
+        "times"
+    })
+    public static class Host {
+
+        @XmlElement(required = true)
+        protected Status status;
+        @XmlElement(required = true)
+        protected Address address;
+        @XmlElement(required = true)
+        protected Hostnames hostnames;
+        @XmlElement(required = true)
+        protected Ports ports;
+        @XmlElement(required = true)
+        protected Os os;
+        @XmlElement(required = true)
+        protected Distance distance;
+        @XmlElement(required = true)
+        protected Tcpsequence tcpsequence;
+        @XmlElement(required = true)
+        protected Ipidsequence ipidsequence;
+        @XmlElement(required = true)
+        protected Tcptssequence tcptssequence;
+        @XmlElement(required = true)
+        protected Trace trace;
+        @XmlElement(required = true)
+        protected Times times;
+        @XmlAttribute(name = "starttime")
+        protected Integer starttime;
+        @XmlAttribute(name = "endtime")
+        protected Integer endtime;
+
+        /**
+         * ��ȡstatus���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Status }
+         *     
+         */
+        public Status getStatus() {
+            return status;
+        }
+
+        /**
+         * ����status���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Status }
+         *     
+         */
+        public void setStatus(Status value) {
+            this.status = value;
+        }
+
+        /**
+         * ��ȡaddress���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Address }
+         *     
+         */
+        public Address getAddress() {
+            return address;
+        }
+
+        /**
+         * ����address���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Address }
+         *     
+         */
+        public void setAddress(Address value) {
+            this.address = value;
+        }
+
+        /**
+         * ��ȡhostnames���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Hostnames }
+         *     
+         */
+        public Hostnames getHostnames() {
+            return hostnames;
+        }
+
+        /**
+         * ����hostnames���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Hostnames }
+         *     
+         */
+        public void setHostnames(Hostnames value) {
+            this.hostnames = value;
+        }
+
+        /**
+         * ��ȡports���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Ports }
+         *     
+         */
+        public Ports getPorts() {
+            return ports;
+        }
+
+        /**
+         * ����ports���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Ports }
+         *     
+         */
+        public void setPorts(Ports value) {
+            this.ports = value;
+        }
+
+        /**
+         * ��ȡos���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Os }
+         *     
+         */
+        public Os getOs() {
+            return os;
+        }
+
+        /**
+         * ����os���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Os }
+         *     
+         */
+        public void setOs(Os value) {
+            this.os = value;
+        }
+
+        /**
+         * ��ȡdistance���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Distance }
+         *     
+         */
+        public Distance getDistance() {
+            return distance;
+        }
+
+        /**
+         * ����distance���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Distance }
+         *     
+         */
+        public void setDistance(Distance value) {
+            this.distance = value;
+        }
+
+        /**
+         * ��ȡtcpsequence���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Tcpsequence }
+         *     
+         */
+        public Tcpsequence getTcpsequence() {
+            return tcpsequence;
+        }
+
+        /**
+         * ����tcpsequence���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Tcpsequence }
+         *     
+         */
+        public void setTcpsequence(Tcpsequence value) {
+            this.tcpsequence = value;
+        }
+
+        /**
+         * ��ȡipidsequence���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Ipidsequence }
+         *     
+         */
+        public Ipidsequence getIpidsequence() {
+            return ipidsequence;
+        }
+
+        /**
+         * ����ipidsequence���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Ipidsequence }
+         *     
+         */
+        public void setIpidsequence(Ipidsequence value) {
+            this.ipidsequence = value;
+        }
+
+        /**
+         * ��ȡtcptssequence���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Tcptssequence }
+         *     
+         */
+        public Tcptssequence getTcptssequence() {
+            return tcptssequence;
+        }
+
+        /**
+         * ����tcptssequence���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Tcptssequence }
+         *     
+         */
+        public void setTcptssequence(Tcptssequence value) {
+            this.tcptssequence = value;
+        }
+
+        /**
+         * ��ȡtrace���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Trace }
+         *     
+         */
+        public Trace getTrace() {
+            return trace;
+        }
+
+        /**
+         * ����trace���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Trace }
+         *     
+         */
+        public void setTrace(Trace value) {
+            this.trace = value;
+        }
+
+        /**
+         * ��ȡtimes���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Times }
+         *     
+         */
+        public Times getTimes() {
+            return times;
+        }
+
+        /**
+         * ����times���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Times }
+         *     
+         */
+        public void setTimes(Times value) {
+            this.times = value;
+        }
+
+        /**
+         * ��ȡstarttime���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getStarttime() {
+            return starttime;
+        }
+
+        /**
+         * ����starttime���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setStarttime(Integer value) {
+            this.starttime = value;
+        }
+
+        /**
+         * ��ȡendtime���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getEndtime() {
+            return endtime;
+        }
+
+        /**
+         * ����endtime���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setEndtime(Integer value) {
+            this.endtime = value;
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="addr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *       &lt;attribute name="addrtype" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Address {
+
+            @XmlAttribute(name = "addr")
+            protected String addr;
+            @XmlAttribute(name = "addrtype")
+            protected String addrtype;
+
+            /**
+             * ��ȡaddr���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getAddr() {
+                return addr;
+            }
+
+            /**
+             * ����addr���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setAddr(String value) {
+                this.addr = value;
+            }
+
+            /**
+             * ��ȡaddrtype���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getAddrtype() {
+                return addrtype;
+            }
+
+            /**
+             * ����addrtype���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setAddrtype(String value) {
+                this.addrtype = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Distance {
+
+            @XmlAttribute(name = "value")
+            protected Integer value;
+
+            /**
+             * ��ȡvalue���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getValue() {
+                return value;
+            }
+
+            /**
+             * ����value���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setValue(Integer value) {
+                this.value = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;sequence&gt;
+         *         &lt;element name="hostname"&gt;
+         *           &lt;complexType&gt;
+         *             &lt;complexContent&gt;
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                 &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                 &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *               &lt;/restriction&gt;
+         *             &lt;/complexContent&gt;
+         *           &lt;/complexType&gt;
+         *         &lt;/element&gt;
+         *       &lt;/sequence&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "hostname"
+        })
+        public static class Hostnames {
+
+            @XmlElement(required = true)
+            protected Hostname hostname;
+
+            /**
+             * ��ȡhostname���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Hostname }
+             *     
+             */
+            public Hostname getHostname() {
+                return hostname;
+            }
+
+            /**
+             * ����hostname���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Hostname }
+             *     
+             */
+            public void setHostname(Hostname value) {
+                this.hostname = value;
+            }
+
+
+            /**
+             * <p>anonymous complex type�� Java �ࡣ
+             * 
+             * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+             * 
+             * <pre>
+             * &lt;complexType&gt;
+             *   &lt;complexContent&gt;
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *     &lt;/restriction&gt;
+             *   &lt;/complexContent&gt;
+             * &lt;/complexType&gt;
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "")
+            public static class Hostname {
+
+                @XmlAttribute(name = "name")
+                protected String name;
+                @XmlAttribute(name = "type")
+                protected String type;
+
+                /**
+                 * ��ȡname���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getName() {
+                    return name;
+                }
+
+                /**
+                 * ����name���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setName(String value) {
+                    this.name = value;
+                }
+
+                /**
+                 * ��ȡtype���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getType() {
+                    return type;
+                }
+
+                /**
+                 * ����type���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setType(String value) {
+                    this.type = value;
+                }
+
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="class" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *       &lt;attribute name="values" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Ipidsequence {
+
+            @XmlAttribute(name = "class")
+            protected String clazz;
+            @XmlAttribute(name = "values")
+            protected BigDecimal values;
+
+            /**
+             * ��ȡclazz���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getClazz() {
+                return clazz;
+            }
+
+            /**
+             * ����clazz���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setClazz(String value) {
+                this.clazz = value;
+            }
+
+            /**
+             * ��ȡvalues���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link BigDecimal }
+             *     
+             */
+            public BigDecimal getValues() {
+                return values;
+            }
+
+            /**
+             * ����values���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link BigDecimal }
+             *     
+             */
+            public void setValues(BigDecimal value) {
+                this.values = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;sequence&gt;
+         *         &lt;element name="portused"&gt;
+         *           &lt;complexType&gt;
+         *             &lt;complexContent&gt;
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                 &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                 &lt;attribute name="proto" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                 &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *               &lt;/restriction&gt;
+         *             &lt;/complexContent&gt;
+         *           &lt;/complexType&gt;
+         *         &lt;/element&gt;
+         *       &lt;/sequence&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "portused"
+        })
+        public static class Os {
+
+            @XmlElement(required = true)
+            protected Portused portused;
+
+            /**
+             * ��ȡportused���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Portused }
+             *     
+             */
+            public Portused getPortused() {
+                return portused;
+            }
+
+            /**
+             * ����portused���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Portused }
+             *     
+             */
+            public void setPortused(Portused value) {
+                this.portused = value;
+            }
+
+
+            /**
+             * <p>anonymous complex type�� Java �ࡣ
+             * 
+             * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+             * 
+             * <pre>
+             * &lt;complexType&gt;
+             *   &lt;complexContent&gt;
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *       &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *       &lt;attribute name="proto" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *       &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+             *     &lt;/restriction&gt;
+             *   &lt;/complexContent&gt;
+             * &lt;/complexType&gt;
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "")
+            public static class Portused {
+
+                @XmlAttribute(name = "state")
+                protected String state;
+                @XmlAttribute(name = "proto")
+                protected String proto;
+                @XmlAttribute(name = "portid")
+                protected Integer portid;
+
+                /**
+                 * ��ȡstate���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getState() {
+                    return state;
+                }
+
+                /**
+                 * ����state���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setState(String value) {
+                    this.state = value;
+                }
+
+                /**
+                 * ��ȡproto���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getProto() {
+                    return proto;
+                }
+
+                /**
+                 * ����proto���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setProto(String value) {
+                    this.proto = value;
+                }
+
+                /**
+                 * ��ȡportid���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public Integer getPortid() {
+                    return portid;
+                }
+
+                /**
+                 * ����portid���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public void setPortid(Integer value) {
+                    this.portid = value;
+                }
+
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;sequence&gt;
+         *         &lt;element name="extraports"&gt;
+         *           &lt;complexType&gt;
+         *             &lt;complexContent&gt;
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                 &lt;sequence&gt;
+         *                   &lt;element name="extrareasons"&gt;
+         *                     &lt;complexType&gt;
+         *                       &lt;complexContent&gt;
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                           &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                           &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *                         &lt;/restriction&gt;
+         *                       &lt;/complexContent&gt;
+         *                     &lt;/complexType&gt;
+         *                   &lt;/element&gt;
+         *                 &lt;/sequence&gt;
+         *                 &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                 &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *               &lt;/restriction&gt;
+         *             &lt;/complexContent&gt;
+         *           &lt;/complexType&gt;
+         *         &lt;/element&gt;
+         *         &lt;element name="port" maxOccurs="unbounded"&gt;
+         *           &lt;complexType&gt;
+         *             &lt;complexContent&gt;
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                 &lt;sequence&gt;
+         *                   &lt;element name="state"&gt;
+         *                     &lt;complexType&gt;
+         *                       &lt;complexContent&gt;
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                           &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                           &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                           &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *                         &lt;/restriction&gt;
+         *                       &lt;/complexContent&gt;
+         *                     &lt;/complexType&gt;
+         *                   &lt;/element&gt;
+         *                   &lt;element name="service"&gt;
+         *                     &lt;complexType&gt;
+         *                       &lt;complexContent&gt;
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                           &lt;sequence&gt;
+         *                             &lt;element name="cpe" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+         *                           &lt;/sequence&gt;
+         *                           &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                           &lt;attribute name="product" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                           &lt;attribute name="method" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                           &lt;attribute name="conf" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *                         &lt;/restriction&gt;
+         *                       &lt;/complexContent&gt;
+         *                     &lt;/complexType&gt;
+         *                   &lt;/element&gt;
+         *                   &lt;element name="script" maxOccurs="unbounded"&gt;
+         *                     &lt;complexType&gt;
+         *                       &lt;complexContent&gt;
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                           &lt;sequence&gt;
+         *                             &lt;element name="table"&gt;
+         *                               &lt;complexType&gt;
+         *                                 &lt;complexContent&gt;
+         *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                                     &lt;sequence&gt;
+         *                                       &lt;element name="elem" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/&gt;
+         *                                     &lt;/sequence&gt;
+         *                                     &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                                   &lt;/restriction&gt;
+         *                                 &lt;/complexContent&gt;
+         *                               &lt;/complexType&gt;
+         *                             &lt;/element&gt;
+         *                           &lt;/sequence&gt;
+         *                           &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                           &lt;attribute name="output" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                         &lt;/restriction&gt;
+         *                       &lt;/complexContent&gt;
+         *                     &lt;/complexType&gt;
+         *                   &lt;/element&gt;
+         *                 &lt;/sequence&gt;
+         *                 &lt;attribute name="protocol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                 &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *               &lt;/restriction&gt;
+         *             &lt;/complexContent&gt;
+         *           &lt;/complexType&gt;
+         *         &lt;/element&gt;
+         *       &lt;/sequence&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "extraports",
+            "port"
+        })
+        public static class Ports {
+
+            @XmlElement(required = true)
+            protected Extraports extraports;
+            @XmlElement(required = true)
+            protected List<Port> port;
+
+            /**
+             * ��ȡextraports���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Extraports }
+             *     
+             */
+            public Extraports getExtraports() {
+                return extraports;
+            }
+
+            /**
+             * ����extraports���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Extraports }
+             *     
+             */
+            public void setExtraports(Extraports value) {
+                this.extraports = value;
+            }
+
+            /**
+             * Gets the value of the port property.
+             * 
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the port property.
+             * 
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getPort().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Port }
+             * 
+             * 
+             */
+            public List<Port> getPort() {
+                if (port == null) {
+                    port = new ArrayList<Port>();
+                }
+                return this.port;
+            }
+
+
+            /**
+             * <p>anonymous complex type�� Java �ࡣ
+             * 
+             * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+             * 
+             * <pre>
+             * &lt;complexType&gt;
+             *   &lt;complexContent&gt;
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *       &lt;sequence&gt;
+             *         &lt;element name="extrareasons"&gt;
+             *           &lt;complexType&gt;
+             *             &lt;complexContent&gt;
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *                 &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                 &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+             *               &lt;/restriction&gt;
+             *             &lt;/complexContent&gt;
+             *           &lt;/complexType&gt;
+             *         &lt;/element&gt;
+             *       &lt;/sequence&gt;
+             *       &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+             *     &lt;/restriction&gt;
+             *   &lt;/complexContent&gt;
+             * &lt;/complexType&gt;
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                "extrareasons"
+            })
+            public static class Extraports {
+
+                @XmlElement(required = true)
+                protected Extrareasons extrareasons;
+                @XmlAttribute(name = "state")
+                protected String state;
+                @XmlAttribute(name = "count")
+                protected Integer count;
+
+                /**
+                 * ��ȡextrareasons���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Extrareasons }
+                 *     
+                 */
+                public Extrareasons getExtrareasons() {
+                    return extrareasons;
+                }
+
+                /**
+                 * ����extrareasons���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Extrareasons }
+                 *     
+                 */
+                public void setExtrareasons(Extrareasons value) {
+                    this.extrareasons = value;
+                }
+
+                /**
+                 * ��ȡstate���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getState() {
+                    return state;
+                }
+
+                /**
+                 * ����state���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setState(String value) {
+                    this.state = value;
+                }
+
+                /**
+                 * ��ȡcount���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public Integer getCount() {
+                    return count;
+                }
+
+                /**
+                 * ����count���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public void setCount(Integer value) {
+                    this.count = value;
+                }
+
+
+                /**
+                 * <p>anonymous complex type�� Java �ࡣ
+                 * 
+                 * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+                 * 
+                 * <pre>
+                 * &lt;complexType&gt;
+                 *   &lt;complexContent&gt;
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+                 *       &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+                 *     &lt;/restriction&gt;
+                 *   &lt;/complexContent&gt;
+                 * &lt;/complexType&gt;
+                 * </pre>
+                 * 
+                 * 
+                 */
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "")
+                public static class Extrareasons {
+
+                    @XmlAttribute(name = "reason")
+                    protected String reason;
+                    @XmlAttribute(name = "count")
+                    protected Integer count;
+
+                    /**
+                     * ��ȡreason���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getReason() {
+                        return reason;
+                    }
+
+                    /**
+                     * ����reason���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setReason(String value) {
+                        this.reason = value;
+                    }
+
+                    /**
+                     * ��ȡcount���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link Integer }
+                     *     
+                     */
+                    public Integer getCount() {
+                        return count;
+                    }
+
+                    /**
+                     * ����count���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link Integer }
+                     *     
+                     */
+                    public void setCount(Integer value) {
+                        this.count = value;
+                    }
+
+                }
+
+            }
+
+
+            /**
+             * <p>anonymous complex type�� Java �ࡣ
+             * 
+             * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+             * 
+             * <pre>
+             * &lt;complexType&gt;
+             *   &lt;complexContent&gt;
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *       &lt;sequence&gt;
+             *         &lt;element name="state"&gt;
+             *           &lt;complexType&gt;
+             *             &lt;complexContent&gt;
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *                 &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                 &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                 &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+             *               &lt;/restriction&gt;
+             *             &lt;/complexContent&gt;
+             *           &lt;/complexType&gt;
+             *         &lt;/element&gt;
+             *         &lt;element name="service"&gt;
+             *           &lt;complexType&gt;
+             *             &lt;complexContent&gt;
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *                 &lt;sequence&gt;
+             *                   &lt;element name="cpe" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+             *                 &lt;/sequence&gt;
+             *                 &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                 &lt;attribute name="product" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                 &lt;attribute name="method" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                 &lt;attribute name="conf" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+             *               &lt;/restriction&gt;
+             *             &lt;/complexContent&gt;
+             *           &lt;/complexType&gt;
+             *         &lt;/element&gt;
+             *         &lt;element name="script" maxOccurs="unbounded"&gt;
+             *           &lt;complexType&gt;
+             *             &lt;complexContent&gt;
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *                 &lt;sequence&gt;
+             *                   &lt;element name="table"&gt;
+             *                     &lt;complexType&gt;
+             *                       &lt;complexContent&gt;
+             *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *                           &lt;sequence&gt;
+             *                             &lt;element name="elem" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/&gt;
+             *                           &lt;/sequence&gt;
+             *                           &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                         &lt;/restriction&gt;
+             *                       &lt;/complexContent&gt;
+             *                     &lt;/complexType&gt;
+             *                   &lt;/element&gt;
+             *                 &lt;/sequence&gt;
+             *                 &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *                 &lt;attribute name="output" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *               &lt;/restriction&gt;
+             *             &lt;/complexContent&gt;
+             *           &lt;/complexType&gt;
+             *         &lt;/element&gt;
+             *       &lt;/sequence&gt;
+             *       &lt;attribute name="protocol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *       &lt;attribute name="portid" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+             *     &lt;/restriction&gt;
+             *   &lt;/complexContent&gt;
+             * &lt;/complexType&gt;
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                "state",
+                "service",
+                "script"
+            })
+            public static class Port {
+
+                @XmlElement(required = true)
+                protected State state;
+                @XmlElement(required = true)
+                protected Service service;
+                @XmlElement(required = true)
+                protected List<Script> script;
+                @XmlAttribute(name = "protocol")
+                protected String protocol;
+                @XmlAttribute(name = "portid")
+                protected Integer portid;
+
+                /**
+                 * ��ȡstate���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link State }
+                 *     
+                 */
+                public State getState() {
+                    return state;
+                }
+
+                /**
+                 * ����state���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link State }
+                 *     
+                 */
+                public void setState(State value) {
+                    this.state = value;
+                }
+
+                /**
+                 * ��ȡservice���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Service }
+                 *     
+                 */
+                public Service getService() {
+                    return service;
+                }
+
+                /**
+                 * ����service���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Service }
+                 *     
+                 */
+                public void setService(Service value) {
+                    this.service = value;
+                }
+
+                /**
+                 * Gets the value of the script property.
+                 * 
+                 * <p>
+                 * This accessor method returns a reference to the live list,
+                 * not a snapshot. Therefore any modification you make to the
+                 * returned list will be present inside the JAXB object.
+                 * This is why there is not a <CODE>set</CODE> method for the script property.
+                 * 
+                 * <p>
+                 * For example, to add a new item, do as follows:
+                 * <pre>
+                 *    getScript().add(newItem);
+                 * </pre>
+                 * 
+                 * 
+                 * <p>
+                 * Objects of the following type(s) are allowed in the list
+                 * {@link Script }
+                 * 
+                 * 
+                 */
+                public List<Script> getScript() {
+                    if (script == null) {
+                        script = new ArrayList<Script>();
+                    }
+                    return this.script;
+                }
+
+                /**
+                 * ��ȡprotocol���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getProtocol() {
+                    return protocol;
+                }
+
+                /**
+                 * ����protocol���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setProtocol(String value) {
+                    this.protocol = value;
+                }
+
+                /**
+                 * ��ȡportid���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public Integer getPortid() {
+                    return portid;
+                }
+
+                /**
+                 * ����portid���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public void setPortid(Integer value) {
+                    this.portid = value;
+                }
+
+
+                /**
+                 * <p>anonymous complex type�� Java �ࡣ
+                 * 
+                 * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+                 * 
+                 * <pre>
+                 * &lt;complexType&gt;
+                 *   &lt;complexContent&gt;
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+                 *       &lt;sequence&gt;
+                 *         &lt;element name="table"&gt;
+                 *           &lt;complexType&gt;
+                 *             &lt;complexContent&gt;
+                 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+                 *                 &lt;sequence&gt;
+                 *                   &lt;element name="elem" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/&gt;
+                 *                 &lt;/sequence&gt;
+                 *                 &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *               &lt;/restriction&gt;
+                 *             &lt;/complexContent&gt;
+                 *           &lt;/complexType&gt;
+                 *         &lt;/element&gt;
+                 *       &lt;/sequence&gt;
+                 *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *       &lt;attribute name="output" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *     &lt;/restriction&gt;
+                 *   &lt;/complexContent&gt;
+                 * &lt;/complexType&gt;
+                 * </pre>
+                 * 
+                 * 
+                 */
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "", propOrder = {
+                    "table"
+                })
+                public static class Script {
+
+                    @XmlElement(required = true)
+                    protected Table table;
+                    @XmlAttribute(name = "id")
+                    protected String id;
+                    @XmlAttribute(name = "output")
+                    protected String output;
+
+                    /**
+                     * ��ȡtable���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link Table }
+                     *     
+                     */
+                    public Table getTable() {
+                        return table;
+                    }
+
+                    /**
+                     * ����table���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link Table }
+                     *     
+                     */
+                    public void setTable(Table value) {
+                        this.table = value;
+                    }
+
+                    /**
+                     * ��ȡid���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getId() {
+                        return id;
+                    }
+
+                    /**
+                     * ����id���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setId(String value) {
+                        this.id = value;
+                    }
+
+                    /**
+                     * ��ȡoutput���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getOutput() {
+                        return output;
+                    }
+
+                    /**
+                     * ����output���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setOutput(String value) {
+                        this.output = value;
+                    }
+
+
+                    /**
+                     * <p>anonymous complex type�� Java �ࡣ
+                     * 
+                     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+                     * 
+                     * <pre>
+                     * &lt;complexType&gt;
+                     *   &lt;complexContent&gt;
+                     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+                     *       &lt;sequence&gt;
+                     *         &lt;element name="elem" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/&gt;
+                     *       &lt;/sequence&gt;
+                     *       &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                     *     &lt;/restriction&gt;
+                     *   &lt;/complexContent&gt;
+                     * &lt;/complexType&gt;
+                     * </pre>
+                     * 
+                     * 
+                     */
+                    @XmlAccessorType(XmlAccessType.FIELD)
+                    @XmlType(name = "", propOrder = {
+                        "elem"
+                    })
+                    public static class Table {
+
+                        @XmlElement(required = true)
+                        protected List<String> elem;
+                        @XmlAttribute(name = "key")
+                        protected String key;
+
+                        /**
+                         * Gets the value of the elem property.
+                         * 
+                         * <p>
+                         * This accessor method returns a reference to the live list,
+                         * not a snapshot. Therefore any modification you make to the
+                         * returned list will be present inside the JAXB object.
+                         * This is why there is not a <CODE>set</CODE> method for the elem property.
+                         * 
+                         * <p>
+                         * For example, to add a new item, do as follows:
+                         * <pre>
+                         *    getElem().add(newItem);
+                         * </pre>
+                         * 
+                         * 
+                         * <p>
+                         * Objects of the following type(s) are allowed in the list
+                         * {@link String }
+                         * 
+                         * 
+                         */
+                        public List<String> getElem() {
+                            if (elem == null) {
+                                elem = new ArrayList<String>();
+                            }
+                            return this.elem;
+                        }
+
+                        /**
+                         * ��ȡkey���Ե�ֵ��
+                         * 
+                         * @return
+                         *     possible object is
+                         *     {@link String }
+                         *     
+                         */
+                        public String getKey() {
+                            return key;
+                        }
+
+                        /**
+                         * ����key���Ե�ֵ��
+                         * 
+                         * @param value
+                         *     allowed object is
+                         *     {@link String }
+                         *     
+                         */
+                        public void setKey(String value) {
+                            this.key = value;
+                        }
+
+                    }
+
+                }
+
+
+                /**
+                 * <p>anonymous complex type�� Java �ࡣ
+                 * 
+                 * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+                 * 
+                 * <pre>
+                 * &lt;complexType&gt;
+                 *   &lt;complexContent&gt;
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+                 *       &lt;sequence&gt;
+                 *         &lt;element name="cpe" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+                 *       &lt;/sequence&gt;
+                 *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *       &lt;attribute name="product" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *       &lt;attribute name="method" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *       &lt;attribute name="conf" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+                 *     &lt;/restriction&gt;
+                 *   &lt;/complexContent&gt;
+                 * &lt;/complexType&gt;
+                 * </pre>
+                 * 
+                 * 
+                 */
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "", propOrder = {
+                    "cpe"
+                })
+                public static class Service {
+
+                    @XmlElement(required = true)
+                    protected String cpe;
+                    @XmlAttribute(name = "name")
+                    protected String name;
+                    @XmlAttribute(name = "product")
+                    protected String product;
+                    @XmlAttribute(name = "method")
+                    protected String method;
+                    @XmlAttribute(name = "conf")
+                    protected Integer conf;
+
+                    /**
+                     * ��ȡcpe���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getCpe() {
+                        return cpe;
+                    }
+
+                    /**
+                     * ����cpe���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setCpe(String value) {
+                        this.cpe = value;
+                    }
+
+                    /**
+                     * ��ȡname���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getName() {
+                        return name;
+                    }
+
+                    /**
+                     * ����name���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setName(String value) {
+                        this.name = value;
+                    }
+
+                    /**
+                     * ��ȡproduct���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getProduct() {
+                        return product;
+                    }
+
+                    /**
+                     * ����product���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setProduct(String value) {
+                        this.product = value;
+                    }
+
+                    /**
+                     * ��ȡmethod���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getMethod() {
+                        return method;
+                    }
+
+                    /**
+                     * ����method���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setMethod(String value) {
+                        this.method = value;
+                    }
+
+                    /**
+                     * ��ȡconf���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link Integer }
+                     *     
+                     */
+                    public Integer getConf() {
+                        return conf;
+                    }
+
+                    /**
+                     * ����conf���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link Integer }
+                     *     
+                     */
+                    public void setConf(Integer value) {
+                        this.conf = value;
+                    }
+
+                }
+
+
+                /**
+                 * <p>anonymous complex type�� Java �ࡣ
+                 * 
+                 * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+                 * 
+                 * <pre>
+                 * &lt;complexType&gt;
+                 *   &lt;complexContent&gt;
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+                 *       &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *       &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+                 *       &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+                 *     &lt;/restriction&gt;
+                 *   &lt;/complexContent&gt;
+                 * &lt;/complexType&gt;
+                 * </pre>
+                 * 
+                 * 
+                 */
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "")
+                public static class State {
+
+                    @XmlAttribute(name = "state")
+                    protected String state;
+                    @XmlAttribute(name = "reason")
+                    protected String reason;
+                    @XmlAttribute(name = "reason_ttl")
+                    protected Integer reasonTtl;
+
+                    /**
+                     * ��ȡstate���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getState() {
+                        return state;
+                    }
+
+                    /**
+                     * ����state���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setState(String value) {
+                        this.state = value;
+                    }
+
+                    /**
+                     * ��ȡreason���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getReason() {
+                        return reason;
+                    }
+
+                    /**
+                     * ����reason���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setReason(String value) {
+                        this.reason = value;
+                    }
+
+                    /**
+                     * ��ȡreasonTtl���Ե�ֵ��
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link Integer }
+                     *     
+                     */
+                    public Integer getReasonTtl() {
+                        return reasonTtl;
+                    }
+
+                    /**
+                     * ����reasonTtl���Ե�ֵ��
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link Integer }
+                     *     
+                     */
+                    public void setReasonTtl(Integer value) {
+                        this.reasonTtl = value;
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="state" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *       &lt;attribute name="reason" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *       &lt;attribute name="reason_ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Status {
+
+            @XmlAttribute(name = "state")
+            protected String state;
+            @XmlAttribute(name = "reason")
+            protected String reason;
+            @XmlAttribute(name = "reason_ttl")
+            protected Integer reasonTtl;
+
+            /**
+             * ��ȡstate���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getState() {
+                return state;
+            }
+
+            /**
+             * ����state���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setState(String value) {
+                this.state = value;
+            }
+
+            /**
+             * ��ȡreason���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getReason() {
+                return reason;
+            }
+
+            /**
+             * ����reason���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setReason(String value) {
+                this.reason = value;
+            }
+
+            /**
+             * ��ȡreasonTtl���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getReasonTtl() {
+                return reasonTtl;
+            }
+
+            /**
+             * ����reasonTtl���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setReasonTtl(Integer value) {
+                this.reasonTtl = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="index" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *       &lt;attribute name="difficulty" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *       &lt;attribute name="values" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Tcpsequence {
+
+            @XmlAttribute(name = "index")
+            protected Integer index;
+            @XmlAttribute(name = "difficulty")
+            protected String difficulty;
+            @XmlAttribute(name = "values")
+            protected String values;
+
+            /**
+             * ��ȡindex���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getIndex() {
+                return index;
+            }
+
+            /**
+             * ����index���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setIndex(Integer value) {
+                this.index = value;
+            }
+
+            /**
+             * ��ȡdifficulty���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getDifficulty() {
+                return difficulty;
+            }
+
+            /**
+             * ����difficulty���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setDifficulty(String value) {
+                this.difficulty = value;
+            }
+
+            /**
+             * ��ȡvalues���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getValues() {
+                return values;
+            }
+
+            /**
+             * ����values���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setValues(String value) {
+                this.values = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="class" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Tcptssequence {
+
+            @XmlAttribute(name = "class")
+            protected String clazz;
+
+            /**
+             * ��ȡclazz���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getClazz() {
+                return clazz;
+            }
+
+            /**
+             * ����clazz���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setClazz(String value) {
+                this.clazz = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="srtt" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *       &lt;attribute name="rttvar" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *       &lt;attribute name="to" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Times {
+
+            @XmlAttribute(name = "srtt")
+            protected Integer srtt;
+            @XmlAttribute(name = "rttvar")
+            protected Integer rttvar;
+            @XmlAttribute(name = "to")
+            protected Integer to;
+
+            /**
+             * ��ȡsrtt���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getSrtt() {
+                return srtt;
+            }
+
+            /**
+             * ����srtt���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setSrtt(Integer value) {
+                this.srtt = value;
+            }
+
+            /**
+             * ��ȡrttvar���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getRttvar() {
+                return rttvar;
+            }
+
+            /**
+             * ����rttvar���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setRttvar(Integer value) {
+                this.rttvar = value;
+            }
+
+            /**
+             * ��ȡto���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getTo() {
+                return to;
+            }
+
+            /**
+             * ����to���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setTo(Integer value) {
+                this.to = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;sequence&gt;
+         *         &lt;element name="hop"&gt;
+         *           &lt;complexType&gt;
+         *             &lt;complexContent&gt;
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *                 &lt;attribute name="ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *                 &lt;attribute name="ipaddr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *                 &lt;attribute name="rtt" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+         *               &lt;/restriction&gt;
+         *             &lt;/complexContent&gt;
+         *           &lt;/complexType&gt;
+         *         &lt;/element&gt;
+         *       &lt;/sequence&gt;
+         *       &lt;attribute name="port" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *       &lt;attribute name="proto" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "hop"
+        })
+        public static class Trace {
+
+            @XmlElement(required = true)
+            protected Hop hop;
+            @XmlAttribute(name = "port")
+            protected Integer port;
+            @XmlAttribute(name = "proto")
+            protected String proto;
+
+            /**
+             * ��ȡhop���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Hop }
+             *     
+             */
+            public Hop getHop() {
+                return hop;
+            }
+
+            /**
+             * ����hop���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Hop }
+             *     
+             */
+            public void setHop(Hop value) {
+                this.hop = value;
+            }
+
+            /**
+             * ��ȡport���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getPort() {
+                return port;
+            }
+
+            /**
+             * ����port���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setPort(Integer value) {
+                this.port = value;
+            }
+
+            /**
+             * ��ȡproto���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getProto() {
+                return proto;
+            }
+
+            /**
+             * ����proto���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setProto(String value) {
+                this.proto = value;
+            }
+
+
+            /**
+             * <p>anonymous complex type�� Java �ࡣ
+             * 
+             * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+             * 
+             * <pre>
+             * &lt;complexType&gt;
+             *   &lt;complexContent&gt;
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+             *       &lt;attribute name="ttl" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+             *       &lt;attribute name="ipaddr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+             *       &lt;attribute name="rtt" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+             *     &lt;/restriction&gt;
+             *   &lt;/complexContent&gt;
+             * &lt;/complexType&gt;
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "")
+            public static class Hop {
+
+                @XmlAttribute(name = "ttl")
+                protected Integer ttl;
+                @XmlAttribute(name = "ipaddr")
+                protected String ipaddr;
+                @XmlAttribute(name = "rtt")
+                protected BigDecimal rtt;
+
+                /**
+                 * ��ȡttl���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public Integer getTtl() {
+                    return ttl;
+                }
+
+                /**
+                 * ����ttl���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Integer }
+                 *     
+                 */
+                public void setTtl(Integer value) {
+                    this.ttl = value;
+                }
+
+                /**
+                 * ��ȡipaddr���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getIpaddr() {
+                    return ipaddr;
+                }
+
+                /**
+                 * ����ipaddr���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setIpaddr(String value) {
+                    this.ipaddr = value;
+                }
+
+                /**
+                 * ��ȡrtt���Ե�ֵ��
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link BigDecimal }
+                 *     
+                 */
+                public BigDecimal getRtt() {
+                    return rtt;
+                }
+
+                /**
+                 * ����rtt���Ե�ֵ��
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link BigDecimal }
+                 *     
+                 */
+                public void setRtt(BigDecimal value) {
+                    this.rtt = value;
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element name="finished"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="time" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                 &lt;attribute name="timestr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                 &lt;attribute name="elapsed" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+     *                 &lt;attribute name="summary" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *                 &lt;attribute name="exit" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *         &lt;element name="hosts"&gt;
+     *           &lt;complexType&gt;
+     *             &lt;complexContent&gt;
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *                 &lt;attribute name="up" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                 &lt;attribute name="down" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *                 &lt;attribute name="total" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *               &lt;/restriction&gt;
+     *             &lt;/complexContent&gt;
+     *           &lt;/complexType&gt;
+     *         &lt;/element&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "finished",
+        "hosts"
+    })
+    public static class Runstats {
+
+        @XmlElement(required = true)
+        protected Finished finished;
+        @XmlElement(required = true)
+        protected Hosts hosts;
+
+        /**
+         * ��ȡfinished���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Finished }
+         *     
+         */
+        public Finished getFinished() {
+            return finished;
+        }
+
+        /**
+         * ����finished���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Finished }
+         *     
+         */
+        public void setFinished(Finished value) {
+            this.finished = value;
+        }
+
+        /**
+         * ��ȡhosts���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Hosts }
+         *     
+         */
+        public Hosts getHosts() {
+            return hosts;
+        }
+
+        /**
+         * ����hosts���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Hosts }
+         *     
+         */
+        public void setHosts(Hosts value) {
+            this.hosts = value;
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="time" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *       &lt;attribute name="timestr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *       &lt;attribute name="elapsed" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+         *       &lt;attribute name="summary" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *       &lt;attribute name="exit" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Finished {
+
+            @XmlAttribute(name = "time")
+            protected Integer time;
+            @XmlAttribute(name = "timestr")
+            protected String timestr;
+            @XmlAttribute(name = "elapsed")
+            protected BigDecimal elapsed;
+            @XmlAttribute(name = "summary")
+            protected String summary;
+            @XmlAttribute(name = "exit")
+            protected String exit;
+
+            /**
+             * ��ȡtime���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getTime() {
+                return time;
+            }
+
+            /**
+             * ����time���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setTime(Integer value) {
+                this.time = value;
+            }
+
+            /**
+             * ��ȡtimestr���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getTimestr() {
+                return timestr;
+            }
+
+            /**
+             * ����timestr���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setTimestr(String value) {
+                this.timestr = value;
+            }
+
+            /**
+             * ��ȡelapsed���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link BigDecimal }
+             *     
+             */
+            public BigDecimal getElapsed() {
+                return elapsed;
+            }
+
+            /**
+             * ����elapsed���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link BigDecimal }
+             *     
+             */
+            public void setElapsed(BigDecimal value) {
+                this.elapsed = value;
+            }
+
+            /**
+             * ��ȡsummary���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getSummary() {
+                return summary;
+            }
+
+            /**
+             * ����summary���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setSummary(String value) {
+                this.summary = value;
+            }
+
+            /**
+             * ��ȡexit���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getExit() {
+                return exit;
+            }
+
+            /**
+             * ����exit���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setExit(String value) {
+                this.exit = value;
+            }
+
+        }
+
+
+        /**
+         * <p>anonymous complex type�� Java �ࡣ
+         * 
+         * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+         * 
+         * <pre>
+         * &lt;complexType&gt;
+         *   &lt;complexContent&gt;
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+         *       &lt;attribute name="up" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *       &lt;attribute name="down" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *       &lt;attribute name="total" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+         *     &lt;/restriction&gt;
+         *   &lt;/complexContent&gt;
+         * &lt;/complexType&gt;
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Hosts {
+
+            @XmlAttribute(name = "up")
+            protected Integer up;
+            @XmlAttribute(name = "down")
+            protected Integer down;
+            @XmlAttribute(name = "total")
+            protected Integer total;
+
+            /**
+             * ��ȡup���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getUp() {
+                return up;
+            }
+
+            /**
+             * ����up���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setUp(Integer value) {
+                this.up = value;
+            }
+
+            /**
+             * ��ȡdown���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getDown() {
+                return down;
+            }
+
+            /**
+             * ����down���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setDown(Integer value) {
+                this.down = value;
+            }
+
+            /**
+             * ��ȡtotal���Ե�ֵ��
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getTotal() {
+                return total;
+            }
+
+            /**
+             * ����total���Ե�ֵ��
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setTotal(Integer value) {
+                this.total = value;
+            }
+
+        }
+
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="protocol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="numservices" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *       &lt;attribute name="services" type="{http://www.w3.org/2001/XMLSchema}dateTime" /&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Scaninfo {
+
+        @XmlAttribute(name = "type")
+        protected String type;
+        @XmlAttribute(name = "protocol")
+        protected String protocol;
+        @XmlAttribute(name = "numservices")
+        protected Integer numservices;
+        @XmlAttribute(name = "services")
+        @XmlSchemaType(name = "dateTime")
+        protected XMLGregorianCalendar services;
+
+        /**
+         * ��ȡtype���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getType() {
+            return type;
+        }
+
+        /**
+         * ����type���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setType(String value) {
+            this.type = value;
+        }
+
+        /**
+         * ��ȡprotocol���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getProtocol() {
+            return protocol;
+        }
+
+        /**
+         * ����protocol���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setProtocol(String value) {
+            this.protocol = value;
+        }
+
+        /**
+         * ��ȡnumservices���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getNumservices() {
+            return numservices;
+        }
+
+        /**
+         * ����numservices���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setNumservices(Integer value) {
+            this.numservices = value;
+        }
+
+        /**
+         * ��ȡservices���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public XMLGregorianCalendar getServices() {
+            return services;
+        }
+
+        /**
+         * ����services���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public void setServices(XMLGregorianCalendar value) {
+            this.services = value;
+        }
+
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;attribute name="task" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="time" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Taskbegin {
+
+        @XmlAttribute(name = "task")
+        protected String task;
+        @XmlAttribute(name = "time")
+        protected Integer time;
+
+        /**
+         * ��ȡtask���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getTask() {
+            return task;
+        }
+
+        /**
+         * ����task���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setTask(String value) {
+            this.task = value;
+        }
+
+        /**
+         * ��ȡtime���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getTime() {
+            return time;
+        }
+
+        /**
+         * ����time���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setTime(Integer value) {
+            this.time = value;
+        }
+
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;attribute name="task" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="time" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Taskend {
+
+        @XmlAttribute(name = "task")
+        protected String task;
+        @XmlAttribute(name = "time")
+        protected Integer time;
+
+        /**
+         * ��ȡtask���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getTask() {
+            return task;
+        }
+
+        /**
+         * ����task���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setTask(String value) {
+            this.task = value;
+        }
+
+        /**
+         * ��ȡtime���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getTime() {
+            return time;
+        }
+
+        /**
+         * ����time���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setTime(Integer value) {
+            this.time = value;
+        }
+
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�����ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;attribute name="level" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Verbose {
+
+        @XmlAttribute(name = "level")
+        protected Integer level;
+
+        /**
+         * ��ȡlevel���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getLevel() {
+            return level;
+        }
+
+        /**
+         * ����level���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setLevel(Integer value) {
+            this.level = value;
+        }
+
+    }
+
+}

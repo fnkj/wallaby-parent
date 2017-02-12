@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="nmaprun">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="scaninfo">
+          <xsd:complexType>
+            <xsd:attribute name="type" type="xsd:string" />
+            <xsd:attribute name="protocol" type="xsd:string" />
+            <xsd:attribute name="numservices" type="xsd:int" />
+            <xsd:attribute name="services" type="xsd:dateTime" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="verbose">
+          <xsd:complexType>
+            <xsd:attribute name="level" type="xsd:int" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="debugging">
+          <xsd:complexType>
+            <xsd:attribute name="level" type="xsd:int" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element maxOccurs="unbounded" name="taskbegin">
+          <xsd:complexType>
+            <xsd:attribute name="task" type="xsd:string" />
+            <xsd:attribute name="time" type="xsd:int" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element maxOccurs="unbounded" name="taskend">
+          <xsd:complexType>
+            <xsd:attribute name="task" type="xsd:string" />
+            <xsd:attribute name="time" type="xsd:int" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="host">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="status">
+                <xsd:complexType>
+                  <xsd:attribute name="state" type="xsd:string" />
+                  <xsd:attribute name="reason" type="xsd:string" />
+                  <xsd:attribute name="reason_ttl" type="xsd:int" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="address">
+                <xsd:complexType>
+                  <xsd:attribute name="addr" type="xsd:string" />
+                  <xsd:attribute name="addrtype" type="xsd:string" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="hostnames">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="hostname">
+                      <xsd:complexType>
+                        <xsd:attribute name="name" type="xsd:string" />
+                        <xsd:attribute name="type" type="xsd:string" />
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="ports">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="extraports">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="extrareasons">
+                            <xsd:complexType>
+                              <xsd:attribute name="reason" type="xsd:string" />
+                              <xsd:attribute name="count" type="xsd:int" />
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="state" type="xsd:string" />
+                        <xsd:attribute name="count" type="xsd:int" />
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element maxOccurs="unbounded" name="port">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="state">
+                            <xsd:complexType>
+                              <xsd:attribute name="state" type="xsd:string" />
+                              <xsd:attribute name="reason" type="xsd:string" />
+                              <xsd:attribute name="reason_ttl" type="xsd:int" />
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element name="service">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="cpe" type="xsd:string" />
+                              </xsd:sequence>
+                              <xsd:attribute name="name" type="xsd:string" />
+                              <xsd:attribute name="product" type="xsd:string" />
+                              <xsd:attribute name="method" type="xsd:string" />
+                              <xsd:attribute name="conf" type="xsd:int" />
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element maxOccurs="unbounded" name="script">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="table">
+                                  <xsd:complexType>
+                                    <xsd:sequence>
+                                      <xsd:element maxOccurs="unbounded" name="elem" type="xsd:string" />
+                                    </xsd:sequence>
+                                    <xsd:attribute name="key" type="xsd:string" />
+                                  </xsd:complexType>
+                                </xsd:element>
+                              </xsd:sequence>
+                              <xsd:attribute name="id" type="xsd:string" />
+                              <xsd:attribute name="output" type="xsd:string" />
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="protocol" type="xsd:string" />
+                        <xsd:attribute name="portid" type="xsd:int" />
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="os">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="portused">
+                      <xsd:complexType>
+                        <xsd:attribute name="state" type="xsd:string" />
+                        <xsd:attribute name="proto" type="xsd:string" />
+                        <xsd:attribute name="portid" type="xsd:int" />
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="distance">
+                <xsd:complexType>
+                  <xsd:attribute name="value" type="xsd:int" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="tcpsequence">
+                <xsd:complexType>
+                  <xsd:attribute name="index" type="xsd:int" />
+                  <xsd:attribute name="difficulty" type="xsd:string" />
+                  <xsd:attribute name="values" type="xsd:string" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="ipidsequence">
+                <xsd:complexType>
+                  <xsd:attribute name="class" type="xsd:string" />
+                  <xsd:attribute name="values" type="xsd:decimal" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="tcptssequence">
+                <xsd:complexType>
+                  <xsd:attribute name="class" type="xsd:string" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="trace">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="hop">
+                      <xsd:complexType>
+                        <xsd:attribute name="ttl" type="xsd:int" />
+                        <xsd:attribute name="ipaddr" type="xsd:string" />
+                        <xsd:attribute name="rtt" type="xsd:decimal" />
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="port" type="xsd:int" />
+                  <xsd:attribute name="proto" type="xsd:string" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="times">
+                <xsd:complexType>
+                  <xsd:attribute name="srtt" type="xsd:int" />
+                  <xsd:attribute name="rttvar" type="xsd:int" />
+                  <xsd:attribute name="to" type="xsd:int" />
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="starttime" type="xsd:int" />
+            <xsd:attribute name="endtime" type="xsd:int" />
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="runstats">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="finished">
+                <xsd:complexType>
+                  <xsd:attribute name="time" type="xsd:int" />
+                  <xsd:attribute name="timestr" type="xsd:string" />
+                  <xsd:attribute name="elapsed" type="xsd:decimal" />
+                  <xsd:attribute name="summary" type="xsd:string" />
+                  <xsd:attribute name="exit" type="xsd:string" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="hosts">
+                <xsd:complexType>
+                  <xsd:attribute name="up" type="xsd:int" />
+                  <xsd:attribute name="down" type="xsd:int" />
+                  <xsd:attribute name="total" type="xsd:int" />
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="scanner" type="xsd:string" />
+      <xsd:attribute name="args" type="xsd:string" />
+      <xsd:attribute name="start" type="xsd:int" />
+      <xsd:attribute name="startstr" type="xsd:string" />
+      <xsd:attribute name="version" type="xsd:decimal" />
+      <xsd:attribute name="xmloutputversion" type="xsd:decimal" />
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
