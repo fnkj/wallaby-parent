@@ -27,29 +27,29 @@ public abstract class ClientUtilBase {
         if (httpMethods == null)
             throw new NullPointerException("请求类型httpMethods不能为空!");
 
-        HttpRequestBase httpRequestBase;
+        HttpRequestBase httpRequest;
         switch (httpMethods) {
             case GET:
-                httpRequestBase = new HttpGet(url);
+                httpRequest = new HttpGet(url);
             case POST:
-                httpRequestBase = new HttpPost(url);
+                httpRequest = new HttpPost(url);
             case PUT:
-                httpRequestBase = new HttpPut(url);
+                httpRequest = new HttpPut(url);
             case DELETE:
-                httpRequestBase = new HttpDelete(url);
+                httpRequest = new HttpDelete(url);
             case HEAD:
-                httpRequestBase = new HttpHead(url);
+                httpRequest = new HttpHead(url);
             case OPTIONS:
-                httpRequestBase = new HttpOptions(url);
+                httpRequest = new HttpOptions(url);
             case TRACE:
-                httpRequestBase = new HttpTrace(url);
+                httpRequest = new HttpTrace(url);
             case PATCH:
-                httpRequestBase = new HttpPatch(url);
+                httpRequest = new HttpPatch(url);
             default:
-                httpRequestBase = new HttpGet(url);
+                httpRequest = new HttpGet(url);
 
         }
-        return httpRequestBase;
+        return httpRequest;
     }
 
 }

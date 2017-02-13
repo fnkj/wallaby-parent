@@ -5,12 +5,16 @@ import com.shaobing.wallaby.common.http.exception.WallabyHttpException;
 import com.shaobing.wallaby.common.http.utils.HttpConfigContext;
 import com.shaobing.wallaby.common.http.utils.HttpMethods;
 import com.shaobing.wallaby.common.http.utils.ResponseWrapper;
+import com.shaobing.wallaby.common.http.utils.UrlParamUtils;
 import com.shaobing.wallaby.common.logger.LoggerUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -18,6 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -85,6 +92,31 @@ public class HttpClientUtil extends ClientUtilBase {
             throw new NullPointerException("Http请求配置上下文不能为空!");
 
         configContext.httpMethods(HttpMethods.GET);
+        setHttpSchema(configContext);
+        return execute(configContext);
+    }
+
+    /**
+     * 以HTTP GET方式获取页面
+     *
+     * @param configContext http配置上下文
+     * @return String
+     */
+    public static <T extends ResponseWrapper> T post(HttpConfigContext configContext) {
+        if (configContext == null)
+            throw new NullPointerException("Http请求配置上下文不能为空!");
+
+        configContext.httpMethods(HttpMethods.POST);
+        setHttpSchema(configContext);
+        return execute(configContext);
+    }
+
+    /**
+     * HTTP或者HTTPS
+     *
+     * @param configContext HttpConfigContext
+     */
+    private static void setHttpSchema(HttpConfigContext configContext) {
         if (configContext.getSupportSsl()) {
             if (configContext.getHttpsClient() == null)
                 configContext.httpsClient(httpsClient);
@@ -93,7 +125,6 @@ public class HttpClientUtil extends ClientUtilBase {
                 configContext.httpClient(httpClient);
 
         }
-        return execute(configContext);
     }
 
     /**
@@ -111,6 +142,22 @@ public class HttpClientUtil extends ClientUtilBase {
         String url = configContext.getUrl();
         HttpMethods httpMethods = configContext.getHttpMethods();
         final HttpRequestBase requestBase = createHttpMethod(url, httpMethods);
+
+        //JUST for POST PUT PATCH
+        if (HttpEntityEnclosingRequestBase.class.isAssignableFrom(requestBase.getClass())) {
+            try {
+                List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+                url = UrlParamUtils.extractUrlParams(url, nvps);
+                UrlParamUtils.params2nvps(nvps, configContext.getParameters());
+                UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nvps, "UTF-8");
+                ((HttpEntityEnclosingRequestBase)requestBase).setEntity(urlEncodedFormEntity);
+            } catch (UnsupportedEncodingException e) {
+                LoggerUtils.error(logger, e, e.getMessage());
+                throw new WallabyHttpException(e);
+            }
+        }
+
+
         ResponseWrapper responseWrapper = null;
         try {
             responseWrapper = httpClient.execute(requestBase,
