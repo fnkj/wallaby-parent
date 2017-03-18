@@ -1,4 +1,4 @@
-package com.shaobingmm.wallaby.crawler.hlinks;
+package com.shaobingmm.wallaby.crawler.ilinks;
 
 import java.io.Serializable;
 

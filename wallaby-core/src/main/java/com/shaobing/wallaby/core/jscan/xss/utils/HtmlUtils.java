@@ -1,4 +1,4 @@
-package com.shaobing.wallaby.core.jscan.xss.defend;
+package com.shaobing.wallaby.core.jscan.xss.utils;
 
 /**
  * XSS防御一些代码,主要参考自springwebmvc

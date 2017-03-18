@@ -1,4 +1,4 @@
-package com.shaobing.wallaby.core.cryptology;
+package com.shaobing.wallaby.core.utils.cryptology;
 
 /**
  * @author luyb@servyou.com.cn

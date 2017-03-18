@@ -1,8 +1,8 @@
 package com.shaobingmm.wallaby.main;
 
+import com.shaobing.wallaby.common.http.utils.URL;
 import com.shaobing.wallaby.common.threadpool.ExecutorUtils;
 import com.shaobing.wallaby.common.threadpool.NameableExecutor;
-import com.shaobing.wallaby.core.http.utils.URL;
 import com.shaobing.wallaby.core.jscan.common.PreambleInfo;
 import com.shaobing.wallaby.core.monitor.PreambleService;
 import com.shaobingmm.wallaby.task.StartUpException;

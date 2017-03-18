@@ -1,4 +1,4 @@
-package com.shaobing.wallaby.core.jscan.xss;
+package com.shaobing.wallaby.core.jscan.xss.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -9,9 +9,9 @@ import org.apache.commons.lang3.StringUtils;
  * @version $Id: XssType.java v 0.1 2017/1/2 21:30 luyb Exp $$
  */
 public enum XssType {
-    STORED("stored", "存储型"),
-    REFLECTED("REFLECTED", "反射型"),
-    DOM("DOM", "DOM Based");
+    STORED("stored", "存储型XSS"),
+    REFLECTED("REFLECTED", "反射型XSS"),
+    DOM("DOM", "DOM-Based XSS");
 
     /** xss类型 */
     private final String type;
